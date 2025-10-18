@@ -6,103 +6,52 @@
 #include <string>
 
 enum class FunctionCardType {
-    A_BeFruitful,   // ¦h²£ *3
-    A_FullTheEarth, // º¡¦a¦Ï *2
-    A_Multiply,     // ¤T°¦¦Ï *2
-    A_Golden,       // ¶Àª÷¦Ï¿á *2
-    B_FallingRock,  // ¸¨¥Û *2
-    B_Slump,        // ¼É¸¨ *2
-    B_Plague,       // ¬Ì¯f *1
-    B_Lightning,    // ¸¨¹p *2
-    B_Storm,        // ´P *1
-    S_Dominion,     // ²Î²v *2
-    S_SheepDog      // ªª¦Ï¤ü *2
+    A_BeFruitful,   // å¤šç”¢ *3
+    A_FullTheEarth, // æ»¿åœ°ç¾Š *2
+    A_Multiply,     // ä¸‰éš»ç¾Š *2
+    A_Golden,       // é»ƒé‡‘ç¾Šè¹„ *2
+    B_FallingRock,  // è½çŸ³ *2
+    B_Slump,        // æš´è½ *2
+    B_Plague,       // ç–«ç—… *1
+    B_Lightning,    // è½é›· *2
+    B_Storm,        // åµ *1
+    S_Dominion,     // çµ±ç‡ *2
+    S_SheepDog      // ç‰§ç¾ŠçŠ¬ *2
 };
 
 class FunctionCard {
 public:
-    // ºc³y¨ç¼Æ
+    // æ§‹é€ å‡½æ•¸
     FunctionCard(FunctionCardType type);
 
-    // Ã¸»s¥dµP¹Ï¤ù¨ì¿Ã¹õ¤Wªº¤èªk
+    // ç¹ªè£½å¡ç‰Œåœ–ç‰‡åˆ°è¢å¹•ä¸Šçš„æ–¹æ³•
     //void draw() const;
 
-    // Àò¨ú¥dµP¼Æ¶qªº¤èªk
+    // ç²å–å¡ç‰Œæ•¸é‡çš„æ–¹æ³•
     int num() const;
 
-    // Àò¨ú¥dµPÃş«¬ªº¤èªk
+    // ç²å–å¡ç‰Œé¡å‹çš„æ–¹æ³•
     FunctionCardType getType() const;
 
-    // Àò¨ú¥dµP¦WºÙªº¤èªk
+    // ç²å–å¡ç‰Œåç¨±çš„æ–¹æ³•
     std::string getName() const;
 
-    // ¥´¦L¥dµP«H®§ªº¤èªk
+    // æ‰“å°å¡ç‰Œä¿¡æ¯çš„æ–¹æ³•
     void printCardInfo() const;
 
-    // °õ¦æ¥dµP°Ê§@ªºµêÀÀ¤èªk
+    // åŸ·è¡Œå¡ç‰Œå‹•ä½œçš„è™›æ“¬æ–¹æ³•
     virtual void executeAction() = 0;
 
 protected:
-    FunctionCardType type; // ¥dµPÃş«¬
-    std::string name;      // ¥dµP¦WºÙ
-    int quantity;          // ¥dµP¼Æ¶q
+    FunctionCardType type; // å¡ç‰Œé¡å‹
+    std::string name;      // å¡ç‰Œåç¨±
+    int quantity;          // å¡ç‰Œæ•¸é‡
     ALLEGRO_BITMAP *func = NULL;
 
 private:
-    // ¥[¸ü¥dµP¹Ï¤ùªº¤èªk¡]¨ãÅé¹ê²{¨ú¨M©ó¨Ï¥Îªº¹Ï§Î®w¡^
+    // åŠ è¼‰å¡ç‰Œåœ–ç‰‡çš„æ–¹æ³•ï¼ˆå…·é«”å¯¦ç¾å–æ±ºæ–¼ä½¿ç”¨çš„åœ–å½¢åº«ï¼‰
     void loadCardImage();
 };
 
 #endif // FUNCTIONCARD_H
 
-/*
-#ifndef FUNCTIONCARD_H
-#define FUNCTIONCARD_H
-
-#include <string>
-
-// ©w¸q¥\¯à¥dÃş«¬ªºªTÁ|
-enum class FunctionCardType {
-    A_BeFruitful,   // ¦h²£
-    A_FullTheEarth, // º¡¦a¦Ï
-    A_Multiply,     // ¤T°¦¦Ï
-    A_Golden,       // ¶Àª÷¦Ï¿á
-    B_FallingRock,  // ¸¨¥Û
-    B_Slump,        // ¼É¸¨
-    B_Plague,       // ¬Ì¯f
-    B_Lightning,    // ¸¨¹p
-    B_Storm,        // ´P
-    S_Dominion,     // ²Î²v
-    S_SheepDog      // ªª¦Ï¤ü
-};
-
-// ¥\¯à¥dÃş§O
-class FunctionCard {
-public:
-    // ºc³y¨ç¼Æ
-    FunctionCard(FunctionCardType type, const std::string &name);
-
-    // Àò¨ú¥dµPÃş«¬
-    FunctionCardType getType() const;
-
-    // Àò¨ú¥dµP¦WºÙ
-    std::string getName() const;
-    //*init();
-
-    void Draw() ;
-
-    // ¯ÂµêÀÀ¨ç¼Æ¡A©w¸q¥dµPªº¨ãÅé¦æ¬°
-    virtual void executeAction() = 0;
-
-    // ¦L¥X¥dµP«H®§¡]¨Ò¦p¡G¥dµP¦WºÙ©MÃş«¬¡^
-    void printCardInfo() const;
-
-    //*¥d¤ù¼Æ¶q
-
-private:
-    FunctionCardType type; // ¥dµPÃş«¬
-    std::string name;      // ¥dµP¦WºÙ
-};
-
-#endif // FUNCTIONCARD_H
-*/
