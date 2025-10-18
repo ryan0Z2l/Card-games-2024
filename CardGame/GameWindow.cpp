@@ -13,13 +13,8 @@
 #define max(a, b) ((a) > (b)? (a) : (b))
 
 
-float Attack::volume = 1.0;
-int TURN;// present turn == 4 lose
-void set_attack_volume(float volume)
-{
-    Attack::volume = volume;
-}
 
+int TURN;// present turn == 4 lose
 
 
 void
