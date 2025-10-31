@@ -8,7 +8,7 @@ Deck::Deck()
 void Deck::Deck_initialize()
 {
     cards.clear();
-    // ©ñ¤J¨CºØ«¬ºAµù¸Ñªº¼Æ¶qªºµP
+    // æ”¾å…¥æ¯ç¨®å‹æ…‹è¨»è§£çš„æ•¸é‡çš„ç‰Œ
     for (int i = 0; i < 3; ++i) { cards.push_back({ A_BeFruitful }); }
     for (int i = 0; i < 2; ++i) { cards.push_back({ A_FullTheEarth }); }
     for (int i = 0; i < 2; ++i) { cards.push_back({ A_Multiply }); }
@@ -56,13 +56,13 @@ void Deck::discardCard(Card& card) {
     auto it = std::find(hand.begin(), hand.end(), card);
 
     if (it != hand.end()) {
-        // ±N­n¥á±óªºµP©ñ¤J±óµP°Ï
+        // å°‡è¦ä¸Ÿæ£„çš„ç‰Œæ”¾å…¥æ£„ç‰Œå€
         discardPile.push_back(*it);
 
-        // ±q¤âµP¤¤²¾°£¥á±óªºµP
+        // å¾æ‰‹ç‰Œä¸­ç§»é™¤ä¸Ÿæ£„çš„ç‰Œ
         hand.erase(it);
 
-        // ©â¤@±i·sµP¶i¤J¤U¤@¦^¦X
+        // æŠ½ä¸€å¼µæ–°ç‰Œé€²å…¥ä¸‹ä¸€å›åˆ
         if(!cards.empty())
         {
              Card newCard = drawCard();
@@ -70,7 +70,7 @@ void Deck::discardCard(Card& card) {
         }
 
 
-        // Åã¥Ü·í«eªº¤âµP¡B¸Ó¦^¦X¥á±óªºµP©M±óµP°Ïªºª¬ºA
+        // é¡¯ç¤ºç•¶å‰çš„æ‰‹ç‰Œã€è©²å›åˆä¸Ÿæ£„çš„ç‰Œå’Œæ£„ç‰Œå€çš„ç‹€æ…‹
         std::cout << "Current Deck: ";
         for (const auto& card : cards) {
             std::cout << card.type << " ";
@@ -101,14 +101,14 @@ void Deck::init()
 }
 
 void Deck::Draw_hand() {
-    const int cardWidth = 160;  // °²³]¨C±iµPªº¼e«×¬° 160
-    const int startY = 450;     // °_©lªº y ®y¼Ğ
+    const int cardWidth = 160;  // å‡è¨­æ¯å¼µç‰Œçš„å¯¬åº¦ç‚º 160
+    const int startY = 450;     // èµ·å§‹çš„ y åº§æ¨™
 
     for (int i = 0; i < hand.size(); ++i) {
 
         int x = 200 + i * cardWidth;
 
-        // Ã¸»sµPªº¹Ï¹³
+        // ç¹ªè£½ç‰Œçš„åœ–åƒ
         al_draw_bitmap(imgData[hand[i].type], x, startY, 0);
     }
 }
@@ -195,25 +195,6 @@ std::map<SheepCardType,int> Deck::event(FunctionCardType _type, std::vector<Shee
                  field[cardSequence[0]]=0;
             }
 
-
-            /*for(auto entry :field)
-            {
-                if(entry.first!=largest)
-                {
-                     switch (entry.first)
-                    {
-                        case Type1: if (field[Type1] > 0) { field[Type1]--; field[Type3]++; } break;
-                        case Type3: if (field[Type3] > 0) { field[Type3]--; field[Type10]++; } break;
-                        case Type10: if (field[Type10] > 0) { field[Type10]--; field[Type30]++; } break;
-                        case Type30: if (field[Type30] > 0) { field[Type30]--; field[Type100]++; } break;
-                        case Type100: if (field[Type100] > 0) { field[Type100]--; field[Type300]++; } break;
-                        case Type300: if (field[Type300] > 0) { field[Type300]--; field[Type1000]++; } break;
-                        // Add more cases for other types if needed
-                        default: break;
-                    }
-                }
-            }
-            */
             break;
 
         }
